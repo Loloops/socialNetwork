@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Profile from './components/Profile';
+import Header from './components/Header/Header';
+import Sidebar from './components/Navbar/Sidebar';
+import Profile from './components/Profile/Profile';
 
 
 
