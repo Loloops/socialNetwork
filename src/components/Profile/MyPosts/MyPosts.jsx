@@ -2,11 +2,20 @@ import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = () => {
+  const postsData = [
+    {id: 1, message: 'Hi, how are you', likescount: 3},
+    {id: 2, message: 'Its my first post', likescount: 10},
+  ]
+  let Posts = postsData.map(post => (<Post message={post.message} likeCount = {post.likescount}/>))
+
+
   return (
     <div className={classes.content}>
        
        <div className={classes.postsBlock}>
-         <h3 className={classes.myPosts}>My Posts</h3>
+         <h3 className={classes.myPosts}>
+           My Posts
+         </h3>
 
          <div className={classes.inputsBtns}>
           <div>
@@ -20,8 +29,8 @@ const MyPosts = () => {
 
          <div className={classes.posts}>
 
-           <Post message='Hi, how are you' likeCount = '3'/>
-           <Post message="It's my first post"  likeCount = '10'/>
+           
+           { Posts }
            
            
 
