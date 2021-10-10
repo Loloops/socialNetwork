@@ -1,9 +1,45 @@
+p{
+  margin: 0;
+}
 
 .item{
   color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5em;
+  background: rgba(41, 144, 255, 0.461);
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-radius: 10px;
+  padding: .5em;
+  width: 60%;
 }
 .item img{
   width: 50px;
   height: 50px;
   border-radius: 30px;
+  position: absolute;
+  left: -10%;
+  top: 0;
+}
+.itemMessage{
+ margin-left: 0.5em;
+ color: black;
+}
+.likeCount{
+  margin-top: 0.7em;
+  margin-left: 0.5em;
+  color: rgb(250, 59, 59);
+  font-weight: 700;
+  
+}
+.likeCount span{
+  padding-right: 0.3em;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+}
+.likeCount span:hover{
+  text-decoration: underline;
 }

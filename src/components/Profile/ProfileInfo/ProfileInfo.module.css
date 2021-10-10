@@ -1,0 +1,9 @@
+.descriptionBlock{
+  padding: 10px;
+}
+.profileInfoImg img{
+  
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}

@@ -5,12 +5,16 @@ const MyPosts = () => {
   return (
     <div className={classes.content}>
        
-       <div>
-         My Posts
+       <div className={classes.postsBlock}>
+         <h3 className={classes.myPosts}>My Posts</h3>
 
-         <div>
-           <textarea></textarea>
-           <button>Add post</button>
+         <div className={classes.inputsBtns}>
+          <div>
+           <textarea maxlength='1000' placeholder='What you think?' rows='10' cols='70' className={classes.textarea}></textarea>
+          </div>
+          <div>
+           <button className={classes.addPostBtn}>Add post</button>
+          </div>
          </div>
 
 
