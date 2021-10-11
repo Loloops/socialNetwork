@@ -2,7 +2,7 @@ import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = (props) => {
-  
+
   let Posts = props.postsData.map(post => (<Post message={post.message} likeCount = {post.likescount}/>))
 
 
@@ -23,7 +23,7 @@ const MyPosts = (props) => {
           </div>
          </div>
 
-
+        
          <div className={classes.posts}>
 
            

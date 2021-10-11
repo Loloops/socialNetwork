@@ -6,6 +6,7 @@ const DialogItem = (props) => {
   
   return (
     <div className={classes.dialog} >
+      <img src ="https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png"/>
       <NavLink to={path} activeClassName={classes.active}> {props.name} </NavLink> 
     </div>
   )

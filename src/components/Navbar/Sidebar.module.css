@@ -4,12 +4,13 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: normal;
+  padding-left: 0.6em;
 }
 .item{
   margin: 15px 0 0px;
 }
-.item:last-child{
+.item:nth-child(5){
   margin-top: 50px;
   margin-bottom: 20px;
 }
@@ -40,3 +41,4 @@
   opacity: 1;
   transform: translateY(7px);
 }
+

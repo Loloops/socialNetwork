@@ -1,0 +1,59 @@
+.Friends{
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-top: 3em;
+  margin-bottom: 2em;
+}
+
+.friendsWrapper{
+  display: flex;
+  text-align: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+  margin-right: 0.5em;
+}
+.friendsItem{
+  width: 33.333333333%;
+  overflow: hidden;
+}
+.friendsItem img{
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+}
+.friendsItem p {
+  color: rgba(0, 0, 238);
+  font-weight: 500;
+  text-transform: none;
+  font-size: 15px;
+}
+
+.Friends a{
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color .2s ease;
+  position: relative;
+}
+.Friends a::before{
+  content: '';
+  bottom: 0;
+  position: absolute;
+  transform: translateY(-7px);
+  height: 2px;
+  width: 100%;
+  background-color: rgb(49, 56, 255);
+  opacity: 0;
+  transition: all .2s ease;
+}
+.Friends a.active{
+  color: rgb(49, 56, 255);
+}
+.Friends a.active::before{
+  opacity: 1;
+  transform: translateY(7px);
+}

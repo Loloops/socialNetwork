@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header';
 import Sidebar from './components/Navbar/Sidebar';
@@ -9,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Settings/Setting';
+import FriendsContent from './components/Friends/FriendsContent';
 
 
 
@@ -18,11 +18,17 @@ import Setting from './components/Settings/Setting';
 
 
 const App = (props) => {
-
   // Data
   
-  let profileComponent = () =>  <Profile postsData={props.postsData}/>
-  let dialogsComponent = () => <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} />
+  let profileComponent = () =>  
+              <Profile 
+                state={props.state.profilePage}
+              />
+
+  let dialogsComponent = () => 
+              <Dialogs 
+                state={props.state.messagesPage} 
+              />
 
 
 // JSX
@@ -32,7 +38,7 @@ const App = (props) => {
 
       <Header />
 
-      <Sidebar />
+      <Sidebar state={props.state.sidebar}/>
 
       <div className='app-wrapper-content'>
          <Route path='/Profile' render={ profileComponent } />
@@ -40,6 +46,7 @@ const App = (props) => {
          <Route path='/News' render={News} />
          <Route path='/Music' render={Music} />
          <Route path='/Settings' render={Setting} />
+         <Route path='/friends' render={FriendsContent} />
      </div>
 
 
