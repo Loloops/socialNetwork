@@ -17,7 +17,15 @@ import Setting from './components/Settings/Setting';
 
 
 
-const App = () => {
+const App = (props) => {
+
+  // Data
+  
+  let profileComponent = () =>  <Profile postsData={props.postsData}/>
+  let dialogsComponent = () => <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} />
+
+
+// JSX
   return (
     <BrowserRouter>
     <div className='app-wrapper'>
@@ -27,11 +35,11 @@ const App = () => {
       <Sidebar />
 
       <div className='app-wrapper-content'>
-         <Route path='/Profile' component={Profile} />
-         <Route path='/Dialogs' component={Dialogs} />
-         <Route path='/News' component={News} />
-         <Route path='/Music' component={Music} />
-         <Route path='/Settings' component={Setting} />
+         <Route path='/Profile' render={ profileComponent } />
+         <Route path='/Dialogs' render={ dialogsComponent } />
+         <Route path='/News' render={News} />
+         <Route path='/Music' render={Music} />
+         <Route path='/Settings' render={Setting} />
      </div>
 
 

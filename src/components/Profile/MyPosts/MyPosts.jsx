@@ -1,12 +1,9 @@
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = () => {
-  const postsData = [
-    {id: 1, message: 'Hi, how are you', likescount: 3},
-    {id: 2, message: 'Its my first post', likescount: 10},
-  ]
-  let Posts = postsData.map(post => (<Post message={post.message} likeCount = {post.likescount}/>))
+const MyPosts = (props) => {
+  
+  let Posts = props.postsData.map(post => (<Post message={post.message} likeCount = {post.likescount}/>))
 
 
   return (
@@ -19,7 +16,7 @@ const MyPosts = () => {
 
          <div className={classes.inputsBtns}>
           <div>
-           <textarea maxlength='1000' placeholder='What you think?' rows='10' cols='70' className={classes.textarea}></textarea>
+           <textarea maxLength='1000' placeholder='What you think?' rows='10' cols='70' className={classes.textarea}></textarea>
           </div>
           <div>
            <button className={classes.addPostBtn}>Add post</button>
