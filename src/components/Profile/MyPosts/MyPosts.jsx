@@ -1,9 +1,19 @@
+import React from 'react'
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = (props) => {
 
   let Posts = props.postsData.map(post => (<Post message={post.message} likeCount = {post.likescount}/>))
+
+  let newPostElement = React.createRef()
+
+  const onAddPost = () => {
+    
+    let text = newPostElement.current.value;
+    props.addPost(text)
+    newPostElement.current.value = ''
+  }
 
 
   return (
@@ -16,10 +26,10 @@ const MyPosts = (props) => {
 
          <div className={classes.inputsBtns}>
           <div>
-           <textarea maxLength='1000' placeholder='What you think?' rows='10' cols='70' className={classes.textarea}></textarea>
+           <textarea ref={ newPostElement } maxLength='1000' placeholder='What you think?' rows='10' cols='70' className={classes.textarea}></textarea>
           </div>
           <div>
-           <button className={classes.addPostBtn}>Add post</button>
+           <button className={classes.addPostBtn} onClick={ onAddPost }>Add post</button>
           </div>
          </div>
 

@@ -4,11 +4,12 @@ import Sidebar from './components/Navbar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import { Route } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Settings/Setting';
 import FriendsContent from './components/Friends/FriendsContent';
+
 
 
 
@@ -23,6 +24,7 @@ const App = (props) => {
   let profileComponent = () =>  
               <Profile 
                 state={props.state.profilePage}
+                addPost={props.addPost}
               />
 
   let dialogsComponent = () => 
@@ -33,7 +35,7 @@ const App = (props) => {
 
 // JSX
   return (
-    <BrowserRouter>
+    
     <div className='app-wrapper'>
 
       <Header />
@@ -51,7 +53,7 @@ const App = (props) => {
 
 
     </div>
-    </BrowserRouter>
+    
   );
 }
 
