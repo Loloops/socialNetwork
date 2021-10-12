@@ -20,9 +20,12 @@ const Dialogs = (props) => {
   const newMessageIn = React.createRef()
   
   const sendMessageBtn = () => {
-    let someTextInArea = newMessageIn.current.value
-    
-    alert(someTextInArea)
+    props.addMessage()
+  }
+
+  const textAreaValue = () => {
+    let text = newMessageIn.current.value
+    props.updateMessageTextarea(text)
   }
   
 
@@ -45,7 +48,7 @@ const Dialogs = (props) => {
       </div>
 
       <div className={classes.messageSendItem}>
-        <textarea ref={ newMessageIn } maxLength='1000' placeholder='Write your message...' rows='7' cols='70' className={classes.messageTextArea}>
+        <textarea ref={ newMessageIn } maxLength='1000' placeholder='Write your message...' rows='7' cols='70' className={classes.messageTextArea} value={ props.state.textAreaStateValue } onChange={ textAreaValue }>
 
         </textarea>
         <button className={classes.messageSendButton} onClick={ sendMessageBtn }>Send</button>

@@ -15,7 +15,7 @@ const FriendItem = (props) => {
 
 
 const Friends = (props) => {
-console.log(props);
+
 
 let friendItem = props.friendsData
     .map(item => (<FriendItem img={item.img} name={item.name}/>))

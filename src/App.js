@@ -19,17 +19,21 @@ import FriendsContent from './components/Friends/FriendsContent';
 
 
 const App = (props) => {
+
   // Data
   
   let profileComponent = () =>  
               <Profile 
-                state={props.state.profilePage}
+                profilePage={props.state.profilePage}
                 addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
               />
 
   let dialogsComponent = () => 
               <Dialogs 
-                state={props.state.messagesPage} 
+                state={props.state.messagesPage}
+                addMessage={ props.addMessage }
+                updateMessageTextarea={ props.updateMessageTextarea } 
               />
 
 
