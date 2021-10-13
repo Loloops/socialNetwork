@@ -1,5 +1,5 @@
 import React from 'react'
-import { sendMessageBtnActionCreater, updateTextAreaValueActionCreater } from '../../redux/state'
+import { sendMessageBtnActionCreater, updateTextAreaValueActionCreater } from '../../redux/messagesReducer'
 import DialogItem from './DialogItem/DialogItem'
 import classes from './Dialogs.module.css'
 import Message from './Message/Message'
@@ -17,14 +17,13 @@ const Dialogs = (props) => {
   let messageselements = props.state.messagesData
         .map(message => (<Message message={message.message} flag={message.flag}/>))
 
-  const newMessageIn = React.createRef()
   
   const sendMessageBtn = () => {
     props.dispatch(sendMessageBtnActionCreater())
   }
 
-  const textAreaValue = () => {
-    let text = newMessageIn.current.value
+  const textAreaValue = (e) => {
+    let text = e.target.value
     props.dispatch(updateTextAreaValueActionCreater(text))
   }
   
@@ -48,8 +47,15 @@ const Dialogs = (props) => {
       </div>
 
       <div className={classes.messageSendItem}>
-        <textarea ref={ newMessageIn } maxLength='1000' placeholder='Write your message...' rows='7' cols='70' className={classes.messageTextArea} value={ props.state.textAreaStateValue } onChange={ textAreaValue }>
-
+        <textarea 
+            maxLength='1000' 
+            placeholder='Write your message...' 
+            rows='7' 
+            cols='70' 
+            className={classes.messageTextArea} 
+            value={ props.state.textAreaStateValue } 
+            onChange={ textAreaValue }
+        >
         </textarea>
         <button className={classes.messageSendButton} onClick={ sendMessageBtn }>Send</button>
       </div>
