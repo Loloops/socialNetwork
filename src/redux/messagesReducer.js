@@ -1,7 +1,30 @@
 const ADD_MESSAGE = 'ADD-MESSAGE',
       UPD_MESSAGE = 'UPDATE-MESSAGE-TEXTAREA'
 
-export const messagesReducer = (state, action) => {
+
+let initialState = 
+{
+  messagesData: 
+  [
+    {id: 1, message: 'Hi', flag: true},
+    {id: 2, message: 'How are you?', flag: true},
+    {id: 3, message: 'Hello', flag: false},
+    {id: 4, message: 'Fuck you', flag: false},
+
+  ],
+  textAreaStateValue: '',
+  dialogsData: 
+  [
+    {id: 1, name: 'Dima'},
+    {id: 2, name: 'Kostya'},
+    {id: 3, name: 'Ivan'},
+    {id: 4, name: 'Lena'},
+    {id: 5, name: 'Alyona'},
+  ],
+}
+
+
+export const messagesReducer = (state = initialState, action) => {
 
 
   switch (action.type) {

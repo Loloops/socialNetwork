@@ -41,8 +41,8 @@ const App = (props) => {
     <div className='app-wrapper'>
 
       <Header />
-
-      <Sidebar state={props.state.sidebar}/>
+      
+      <Sidebar state={props.state.sidebarpages} dispatch={props.dispatch}/>
 
       <div className='app-wrapper-content'>
          <Route path='/Profile' render={ profileComponent } />
