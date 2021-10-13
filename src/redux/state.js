@@ -41,56 +41,50 @@ let store = {
     },
 
   },
-
-  getState() {
-    return this._state;
-  },
-
   _callSubscriber() {
     
   },
 
-
-  addPost() {
-    const newPost = {
-      id: 3,
-      message: this._state.profilePage.newPostText,
-      likescount: 0
-    }
-  
-    this._state.profilePage.postsData.push(newPost)
-    this._state.profilePage.newPostText = ''
-    this._callSubscriber(this._state)
+  getState() {
+    return this._state;
   },
-
-  updateNewPostText(newText){
-    this._state.profilePage.newPostText = newText
-    this._callSubscriber(this._state)
-  },
-
   subscribe(observer){
     this._callSubscriber = observer
   },
-
-  addMessage(){
-    const newMessgae = {
-      id: 5,
-      message: this._state.messagesPage.textAreaStateValue,
-      flag: true,
-    }
   
-    this._state.messagesPage.messagesData.push(newMessgae)
-    this._callSubscriber(this._state)
-    this.updateMessageTextarea('')
-  },
 
-  updateMessageTextarea(newMessage){
-    this._state.messagesPage.textAreaStateValue = newMessage
-    this._callSubscriber(this._state)
+  dispatch(action){//action - object { type: 'ADD-POST'}
+    if (action.type === 'ADD-POST'){
+      const newPost = {
+        id: 3,
+        message: this._state.profilePage.newPostText,
+        likescount: 0
+      }
+      this._state.profilePage.postsData.push(newPost)
+      this._state.profilePage.newPostText = ''
+      this._callSubscriber(this._state)
+
+    } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+
+      this._state.profilePage.newPostText = action.newText
+      this._callSubscriber(this._state)
+
+    } else if (action.type === 'ADD-MESSAGE'){
+      const newMessgae = {
+        id: 5,
+        message: this._state.messagesPage.textAreaStateValue,
+        flag: true,
+      }
+      this._state.messagesPage.messagesData.push(newMessgae)
+      this._callSubscriber(this._state)
+      this._state.messagesPage.textAreaStateValue= ''
+
+    } else if (action.type === 'UPDATE-MESSAGE-TEXTAREA'){
+      this._state.messagesPage.textAreaStateValue = action.newMessage
+      this._callSubscriber(this._state)
+    }
   }
-
-        
-
+  
 }
 
 

@@ -25,15 +25,13 @@ const App = (props) => {
   let profileComponent = () =>  
               <Profile 
                 profilePage={props.state.profilePage}
-                addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText}
+                dispatch={props.dispatch}
               />
 
   let dialogsComponent = () => 
               <Dialogs 
                 state={props.state.messagesPage}
-                addMessage={ props.addMessage }
-                updateMessageTextarea={ props.updateMessageTextarea } 
+                dispatch={props.dispatch}
               />
 
 

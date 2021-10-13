@@ -20,12 +20,17 @@ const Dialogs = (props) => {
   const newMessageIn = React.createRef()
   
   const sendMessageBtn = () => {
-    props.addMessage()
+    props.dispatch({
+      type: 'ADD-MESSAGE',
+    })
   }
 
   const textAreaValue = () => {
     let text = newMessageIn.current.value
-    props.updateMessageTextarea(text)
+    props.dispatch({
+      type: 'UPDATE-MESSAGE-TEXTAREA',
+      newMessage: text,
+    })
   }
   
 
