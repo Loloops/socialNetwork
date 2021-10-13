@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST',
+      UPD_POST = 'UPDATE-NEW-POST-TEXT',
+      ADD_MESSAGE = 'ADD-MESSAGE',
+      UPD_MESSAGE = 'UPDATE-MESSAGE-TEXTAREA'
+
 let store = {
   _state: 
   {
@@ -54,7 +59,7 @@ let store = {
   
 
   dispatch(action){//action - object { type: 'ADD-POST'}
-    if (action.type === 'ADD-POST'){
+    if (action.type === ADD_POST){
       const newPost = {
         id: 3,
         message: this._state.profilePage.newPostText,
@@ -64,12 +69,12 @@ let store = {
       this._state.profilePage.newPostText = ''
       this._callSubscriber(this._state)
 
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+    } else if (action.type === UPD_POST){
 
       this._state.profilePage.newPostText = action.newText
       this._callSubscriber(this._state)
 
-    } else if (action.type === 'ADD-MESSAGE'){
+    } else if (action.type === ADD_MESSAGE){
       const newMessgae = {
         id: 5,
         message: this._state.messagesPage.textAreaStateValue,
@@ -79,15 +84,40 @@ let store = {
       this._callSubscriber(this._state)
       this._state.messagesPage.textAreaStateValue= ''
 
-    } else if (action.type === 'UPDATE-MESSAGE-TEXTAREA'){
+    } else if (action.type === UPD_MESSAGE){
       this._state.messagesPage.textAreaStateValue = action.newMessage
       this._callSubscriber(this._state)
     }
-  }
-  
+  },
+
 }
 
 
+//post
+export const addPostActionCreator = () => {
+  return {
+    type: ADD_POST
+  }
+}
+export const updateNewPostActionCreater = (text) => {
+  return {
+    type: UPD_POST,
+    newText: text
+  }
+}
+
+//message
+export const sendMessageBtnActionCreater = () => {
+  return {
+    type: ADD_MESSAGE
+  }
+}
+export const updateTextAreaValueActionCreater = (text) => {
+  return {
+    type: UPD_MESSAGE,
+    newMessage: text
+  }
+}
 
 export default store
 

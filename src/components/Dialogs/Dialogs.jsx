@@ -1,5 +1,5 @@
-
 import React from 'react'
+import { sendMessageBtnActionCreater, updateTextAreaValueActionCreater } from '../../redux/state'
 import DialogItem from './DialogItem/DialogItem'
 import classes from './Dialogs.module.css'
 import Message from './Message/Message'
@@ -20,17 +20,12 @@ const Dialogs = (props) => {
   const newMessageIn = React.createRef()
   
   const sendMessageBtn = () => {
-    props.dispatch({
-      type: 'ADD-MESSAGE',
-    })
+    props.dispatch(sendMessageBtnActionCreater())
   }
 
   const textAreaValue = () => {
     let text = newMessageIn.current.value
-    props.dispatch({
-      type: 'UPDATE-MESSAGE-TEXTAREA',
-      newMessage: text,
-    })
+    props.dispatch(updateTextAreaValueActionCreater(text))
   }
   
 
