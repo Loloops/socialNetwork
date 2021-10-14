@@ -1,5 +1,4 @@
 import React from 'react'
-import { sendMessageBtnActionCreater, updateTextAreaValueActionCreater } from '../../redux/messagesReducer'
 import DialogItem from './DialogItem/DialogItem'
 import classes from './Dialogs.module.css'
 import Message from './Message/Message'
@@ -11,20 +10,20 @@ import Message from './Message/Message'
 const Dialogs = (props) => {
   
 
-  let dialogsElements = props.state.dialogsData
+  let dialogsElements = props.dialogs
         .map(dialog => (<DialogItem name={dialog.name} id={dialog.id}/>))
   
-  let messageselements = props.state.messagesData
+  let messageselements = props.message
         .map(message => (<Message message={message.message} flag={message.flag}/>))
 
   
   const sendMessageBtn = () => {
-    props.dispatch(sendMessageBtnActionCreater())
+    props.MessageBtn()
   }
 
   const textAreaValue = (e) => {
     let text = e.target.value
-    props.dispatch(updateTextAreaValueActionCreater(text))
+    props.AreaValue(text)
   }
   
 
@@ -53,7 +52,7 @@ const Dialogs = (props) => {
             rows='7' 
             cols='70' 
             className={classes.messageTextArea} 
-            value={ props.state.textAreaStateValue } 
+            value={ props.textAreaValue } 
             onChange={ textAreaValue }
         >
         </textarea>

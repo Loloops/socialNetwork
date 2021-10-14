@@ -9,6 +9,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Settings/Setting';
 import FriendsContent from './components/Friends/FriendsContent';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 
@@ -21,17 +22,14 @@ import FriendsContent from './components/Friends/FriendsContent';
 const App = (props) => {
 
   // Data
-  
-  let profileComponent = () =>  
+  let profileComponent = () => 
               <Profile 
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
+                store={ props.store }
               />
 
   let dialogsComponent = () => 
-              <Dialogs 
-                state={props.state.messagesPage}
-                dispatch={props.dispatch}
+              <DialogsContainer 
+                store={ props.store }
               />
 
 
