@@ -9,11 +9,12 @@ import Message from './Message/Message'
 
 const Dialogs = (props) => {
   
+  let state = props.messagesPage
 
-  let dialogsElements = props.dialogs
+  let dialogsElements = state.dialogsData
         .map(dialog => (<DialogItem name={dialog.name} id={dialog.id}/>))
   
-  let messageselements = props.message
+  let messageselements = state.messagesData
         .map(message => (<Message message={message.message} flag={message.flag}/>))
 
   
@@ -52,7 +53,7 @@ const Dialogs = (props) => {
             rows='7' 
             cols='70' 
             className={classes.messageTextArea} 
-            value={ props.textAreaValue } 
+            value={ state.textAreaStateValue } 
             onChange={ textAreaValue }
         >
         </textarea>

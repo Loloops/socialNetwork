@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import Friends from '../Friends/Friends'
+import FriendsContainer from '../Friends/FriendsContainer'
 import classes from './Sidebar.module.css'
 
 const Sidebar = (props) => {
@@ -24,7 +24,7 @@ const Sidebar = (props) => {
         <NavLink to="/settings" activeClassName={classes.active}>Settings</NavLink> 
       </div>
 
-      <Friends  friendsData={props.state.friendsData}/> 
+      <FriendsContainer/> 
       
 
     </nav>

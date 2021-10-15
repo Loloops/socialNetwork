@@ -23,14 +23,10 @@ const App = (props) => {
 
   // Data
   let profileComponent = () => 
-              <Profile 
-                store={ props.store }
-              />
+              <Profile/>
 
   let dialogsComponent = () => 
-              <DialogsContainer 
-                store={ props.store }
-              />
+              <DialogsContainer />
 
 
 // JSX
@@ -40,7 +36,7 @@ const App = (props) => {
 
       <Header />
       
-      <Sidebar state={props.state.sidebarpages} dispatch={props.dispatch}/>
+      <Sidebar/>
 
       <div className='app-wrapper-content'>
          <Route path='/Profile' render={ profileComponent } />
