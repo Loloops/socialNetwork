@@ -9,6 +9,9 @@ import Setting from './components/Settings/Setting';
 import FriendsContent from './components/Friends/FriendsContent';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
+import UsersContainer from './components/Users/UsersContainer';
+
+
 
 
 
@@ -19,15 +22,6 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App = () => {
 
-  // Data
-  let profileComponent = () => 
-              <Profile/>
-
-  let dialogsComponent = () => 
-              <DialogsContainer />
-
-
-// JSX
   return (
     
     <div className='app-wrapper'>
@@ -37,12 +31,13 @@ const App = () => {
       <Sidebar/>
 
       <div className='app-wrapper-content'>
-         <Route path='/Profile' render={ profileComponent } />
-         <Route path='/Dialogs' render={ dialogsComponent } />
-         <Route path='/News' render={News} />
-         <Route path='/Music' render={Music} />
-         <Route path='/Settings' render={Setting} />
-         <Route path='/friends' render={FriendsContent} />
+         <Route path='/Profile' render={ () => <Profile/> } />
+         <Route path='/Dialogs' render={ () => <DialogsContainer /> } />
+         <Route path='/News' render={ News } />
+         <Route path='/Music' render={ Music } />
+         <Route path='/Settings' render={ Setting } />
+         <Route path='/Users' render={ () => <UsersContainer /> } />
+         <Route path='/friends' render={ FriendsContent } />
      </div>
 
 
