@@ -2,9 +2,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Sidebar from './components/Navbar/Sidebar';
 import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
 import { Route } from 'react-router';
-
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Settings/Setting';
@@ -19,7 +17,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 
-const App = (props) => {
+const App = () => {
 
   // Data
   let profileComponent = () => 

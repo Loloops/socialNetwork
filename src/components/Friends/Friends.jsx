@@ -8,7 +8,7 @@ const Friends = (props) => {
 
 
 let friendItem = props.friendsData
-    .map(item => (<FriendItem img={item.img} name={item.name}/>))
+    .map(item => (<FriendItem img={item.img} key={item.id} name={item.name}/>))
 
   return (
     <div className={classes.Friends}>

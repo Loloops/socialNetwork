@@ -26,20 +26,23 @@ let initialState =
 
 export const messagesReducer = (state = initialState, action) => {
 
-
   switch (action.type) {
     case ADD_MESSAGE:
-        const newMessgae = {
-          id: 5,
-          message: state.textAreaStateValue,
-          flag: true,
-        }
-        state.messagesData.push(newMessgae)
-        state.textAreaStateValue= ''
-      return state  
+      const newMessgae = {
+        id: 5,
+        message: state.textAreaStateValue,
+        flag: true,
+      }
+      return {
+        ...state,
+        textAreaStateValue: '',
+        messagesData: [...state.messagesData, newMessgae]
+      }
     case UPD_MESSAGE:
-        state.textAreaStateValue = action.newMessage
-      return state
+      return {
+        ...state,
+        textAreaStateValue: action.newMessage
+      }
     default:
       return state
   }

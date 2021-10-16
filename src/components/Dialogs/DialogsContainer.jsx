@@ -1,39 +1,31 @@
-import React from 'react'
+
+import { connect } from 'react-redux'
 import { sendMessageBtnActionCreater, updateTextAreaValueActionCreater } from '../../redux/messagesReducer'
-import StoreContext from '../../storeContext'
 import Dialogs from './Dialogs'
 
 
 
 
 
-
-const DialogsContainer = (props) => {
-  
-  return (
-    <StoreContext.Consumer> 
-      {
-        (store) => {
-          let state = store.getState()
-          const sendMessageBtn = () => {
-            store.dispatch(sendMessageBtnActionCreater())
-          }
-        
-          const textAreaValue = (text) => {
-            store.dispatch(updateTextAreaValueActionCreater(text))
-          }
-          return <Dialogs 
-            MessageBtn={sendMessageBtn}
-            AreaValue={textAreaValue}
-            messagesPage={state.messagesPage}
-          />
-        }
-      }
-   
-   </StoreContext.Consumer>
-
-  )
+let mapStateToProps = (state) => {
+  return {
+    messagesPage: state.messagesPage,
+  }
 }
+let mapDispatchToProps = (dispatch) => {
+  return {
+    MessageBtn: () => {
+      dispatch(sendMessageBtnActionCreater())
+    },
+    AreaValue: (text) => {
+      dispatch(updateTextAreaValueActionCreater(text))
+    }
+  }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+
 export default DialogsContainer
 
 

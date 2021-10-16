@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import FriendsContainer from '../Friends/FriendsContainer'
 import classes from './Sidebar.module.css'
 
-const Sidebar = (props) => {
+const Sidebar = () => {
 
 
 
