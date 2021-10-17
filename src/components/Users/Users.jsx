@@ -1,26 +1,18 @@
 import classes from "./Users.module.css"
 import User from './User/User'
+import * as axios from 'axios'
 
 
 const Users = (props) => {
   
   if (props.users.length === 0){
+    axios.get('https://social-network.samuraijs.com/api/1.0/users')
+      .then(res => {
+        console.log(res.data.items);
+        props.setUsers(res.data.items)
+      })
+
     
-    props.setUsers(
-    [
-      {
-        id: 1, 
-        photoUrl: 'https://lumpics.ru/wp-content/uploads/2017/11/Programmyi-dlya-sozdaniya-avatarok.png', 
-        followed: false, 
-        fullName: 'Dmitry', 
-        status: 'So fucking goods', 
-        location: 
-          {
-            city:'Kiev', 
-            country: 'Ukrain'
-          }},
-      
-    ])
   }
 
   
@@ -29,10 +21,10 @@ const Users = (props) => {
   let userItem = props.users.map(u => 
   <User
     key={u.id}
-    fullName={u.fullName} 
+    name={u.name} 
     status={u.status} 
     location={u.location} 
-    photoUrl={u.photoUrl} 
+    photos={u.photos.small} 
     followed={u.followed} 
     follow={props.follow} 
     unfollow={props.unfollow}
