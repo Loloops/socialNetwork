@@ -1,36 +1,17 @@
-import classes from "./Users.module.css"
-import * as axios from 'axios'
-import React from "react"
+import classes from './Users.module.css'
 import userPhoto from '../../assets/Programmyi-dlya-sozdaniya-avatarok.png'
 
 
-class Users extends React.Component {
-
-  componentDidMount(){
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-      .then(res => {
-        this.props.setUsers(res.data.items)
-        this.props.setTotalUsersCount(res.data.totalCount)
-      })
-  }
-  
-  onPageChanged = (p) => { 
-    this.props.setCurrentPage(p) 
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`)
-      .then(res => {
-        this.props.setUsers(res.data.items)
-      })
-  }
-
-  render() {
-    let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+const Users = (props) => {
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++){
       pages.push(i)
     }
-    return <div>
+  return (
+    <div>
       {
-        this.props.users.map(u => <div key={u.id}  className={classes.UsersWrapper}>
+        props.users.map(u => <div key={u.id}  className={classes.UsersWrapper}>
           <div className={`${classes.userItem} ${classes.wrapperImg}`}>
             <div>
               <img 
@@ -42,12 +23,12 @@ class Users extends React.Component {
               u.followed 
                 ? 
                 <button 
-                  onClick={() => { this.props.unfollow(u.id) }} 
+                  onClick={() => { props.unfollow(u.id) }} 
                   className={`${classes.userItemBtn} ${classes.userItemBtnUnf}`}>
                     Unfollow
                 </button> 
                 : 
-                <button onClick={() => { this.props.follow(u.id) }} 
+                <button onClick={() => { props.follow(u.id) }} 
                   className={classes.userItemBtn}>
                     Follow
                 </button> 
@@ -74,19 +55,14 @@ class Users extends React.Component {
       <div>
         {pages.map(p => {
           return <button 
-          className={`${this.props.currentPage === p && classes.selectedpadge} ${classes.page}`}
-          onClick={() => {this.onPageChanged(p)} }>
+          className={`${props.currentPage === p && classes.selectedpadge} ${classes.page}`}
+          onClick={() => {props.onPageChanged(p)} }>
             {p}
           </button>
         })}
 
       </div>
     </div>
-      
-    
-  }
+  )
 }
-
-
-
 export default Users
