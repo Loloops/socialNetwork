@@ -1,14 +1,34 @@
 import classes from './Users.module.css'
 import userPhoto from '../../assets/Programmyi-dlya-sozdaniya-avatarok.png'
 import { NavLink } from 'react-router-dom'
+import { usersAPI } from '../../api/api'
 
 
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++){
-      pages.push(i)
-    }
+  let pages = []
+  for (let i = 1; i <= pagesCount; i++){
+    pages.push(i)
+  }
+
+  const unfollow = (id) => {
+    usersAPI.unFollowUser(id).then(data => {
+      if (data.resultCode === 0){
+       props.unfollow(id)
+      }
+     })
+  }
+  const follow = (id) => {
+    usersAPI.followUser(id).then(data => {
+      if (data.resultCode === 0){
+       props.follow(id)
+      }
+     })
+  }
+
+
+
+
   return (
     <div>
       {
@@ -26,12 +46,12 @@ const Users = (props) => {
               u.followed 
                 ? 
                 <button 
-                  onClick={() => { props.unfollow(u.id) }} 
+                  onClick={() => unfollow(u.id) } 
                   className={`${classes.userItemBtn} ${classes.userItemBtnUnf}`}>
                     Unfollow
                 </button> 
                 : 
-                <button onClick={() => { props.follow(u.id) }} 
+                <button onClick={() => follow(u.id)} 
                   className={classes.userItemBtn}>
                     Follow
                 </button> 
