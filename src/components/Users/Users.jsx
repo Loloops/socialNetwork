@@ -1,7 +1,7 @@
 import classes from './Users.module.css'
 import userPhoto from '../../assets/Programmyi-dlya-sozdaniya-avatarok.png'
 import { NavLink } from 'react-router-dom'
-import { usersAPI } from '../../api/api'
+
 
 
 const Users = (props) => {
@@ -10,23 +10,6 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++){
     pages.push(i)
   }
-
-  const unfollow = (id) => {
-    usersAPI.unFollowUser(id).then(data => {
-      if (data.resultCode === 0){
-       props.unfollow(id)
-      }
-     })
-  }
-  const follow = (id) => {
-    usersAPI.followUser(id).then(data => {
-      if (data.resultCode === 0){
-       props.follow(id)
-      }
-     })
-  }
-
-
 
 
   return (
@@ -45,13 +28,19 @@ const Users = (props) => {
             { 
               u.followed 
                 ? 
-                <button 
-                  onClick={() => unfollow(u.id) } 
+                <button disabled={props.followingInProgress.some(id => id === u.id)}
+                  onClick={() => {
+                    props.unfollowThunk(u.id)
+                  }
+                  } 
                   className={`${classes.userItemBtn} ${classes.userItemBtnUnf}`}>
                     Unfollow
                 </button> 
                 : 
-                <button onClick={() => follow(u.id)} 
+                <button disabled={props.followingInProgress.some(id => id === u.id)}  
+                  onClick={() => {
+                    props.followThunk(u.id)
+                }} 
                   className={classes.userItemBtn}>
                     Follow
                 </button> 

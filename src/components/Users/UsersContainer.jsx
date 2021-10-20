@@ -1,38 +1,25 @@
 import React from "react"
 import { connect } from "react-redux"
-import { followAC, setCurrentPageAC, setIsFetchingAC, setTotalUsersCountAC, setUsersAC, unFollowAC } from "../../redux/usersReducer"
+import { followAC, followingInProgressAC, getUsersThunkCreator, setUsersAC, unFollowAC } from "../../redux/usersReducer"
 import Users from "./Users"
 import Preloader from "../common/preloader/preloader"
-import { usersAPI } from "../../api/api"
+import { followThunk, unfollowThunk } from '../../redux/usersReducer'
+
 
 
 
 class UsersContainer extends React.Component {
 
   componentDidMount(){
-    this.props.toggleIsFetching(true)
 
+    this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
 
-    
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-        this.props.toggleIsFetching(false)
-        this.props.setUsers(data.items)
-        this.props.setTotalUsersCount(data.totalCount)
-      })
   }
   
   onPageChanged = (p) => { 
-    this.props.setCurrentPage(p)
-    this.props.toggleIsFetching(true) 
 
+    this.props.getUsersThunkCreator(p, this.props.pageSize)
 
-
-    usersAPI.getUsers(p, this.props.pageSize)
-      .then(data => {
-        this.props.setUsers(data.items)
-        this.props.toggleIsFetching(false)
-      })
   }
 
   render() {
@@ -45,9 +32,9 @@ class UsersContainer extends React.Component {
         currentPage={this.props.currentPage}
         onPageChanged={this.onPageChanged}
         users={this.props.users}
-        unfollow={this.props.unfollow}
-        follow={this.props.follow}
-
+        followingInProgress={this.props.followingInProgress}
+        followThunk={this.props.followThunk}
+        unfollowThunk={this.props.unfollowThunk}
     />
   }
     </> 
@@ -68,40 +55,13 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersPage.totalUsersCount,
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   }
 }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     follow: (userId) => {
-//       dispatch(followAC(userId)) //Этот код прописывается автоматом(*)
-//     },
-//     unfollow: (userId) => {
-//       dispatch(unFollowAC(userId))
-//     },
-//     setUsers: (userId) => {
-//       dispatch(setUsersAC(userId))
-//     },
-//     setCurrentPage: (pageNumber) => {
-//       dispatch(setCurrentPageAC(pageNumber))
-//     },
-//     setTotalUsersCount: (totalCount) => {
-//       dispatch(setTotalUsersCountAC(totalCount))
-//     },
-//     toggleIsFetching: (isFetching) => {
-//       dispatch(setIsFetchingAC(isFetching))
-//     },
-//   }
-// }
-
-
-
 
 
 export default connect(mapStateToProps,  {
-  follow: followAC, //(*)
-  unfollow: unFollowAC,
-  setUsers: setUsersAC,
-  setCurrentPage: setCurrentPageAC,
-  setTotalUsersCount: setTotalUsersCountAC,
-  toggleIsFetching: setIsFetchingAC,
+  getUsersThunkCreator,
+  followThunk,
+  unfollowThunk
 })(UsersContainer)
