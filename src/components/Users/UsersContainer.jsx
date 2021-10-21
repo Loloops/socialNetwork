@@ -4,6 +4,8 @@ import { followAC, followingInProgressAC, getUsersThunkCreator, setUsersAC, unFo
 import Users from "./Users"
 import Preloader from "../common/preloader/preloader"
 import { followThunk, unfollowThunk } from '../../redux/usersReducer'
+import { withAuthRedirect } from "../hoc/AuthRedirect"
+import { compose } from "redux"
 
 
 
@@ -60,8 +62,11 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps,  {
-  getUsersThunkCreator,
-  followThunk,
-  unfollowThunk
-})(UsersContainer)
+export default compose(
+  connect(mapStateToProps,  {//2
+    getUsersThunkCreator,
+    followThunk,
+    unfollowThunk
+  }),
+  withAuthRedirect//1
+)(UsersContainer)//1

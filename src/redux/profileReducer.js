@@ -2,7 +2,8 @@ import { profileAPI } from "../api/api"
 
 const ADD_POST = 'ADD-POST',
       UPD_POST = 'UPDATE-NEW-POST-TEXT',
-      SET_USER_PROFILE = 'SET-USER-PROFILE'
+      SET_USER_PROFILE = 'SET-USER-PROFILE',
+      SET_STATUS = 'SET_STATUS'
 
 let initialState = 
 {
@@ -12,7 +13,8 @@ let initialState =
     {id: 2, message: 'Its my first post', likescount: 10},
   ],
   newPostText: '',
-  profile: null
+  profile: null,
+  status: ''
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -38,6 +40,11 @@ export const profileReducer = (state = initialState, action) => {
         ...state,
         profile: action.profile
       }
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.status
+      }
     default:
       return state
   }
@@ -62,6 +69,13 @@ export const setUserProfileAC = (profile) => {
     profile
   }
 }
+export const setStatus = (status) => {
+  return {
+    type: SET_STATUS,
+    status
+  }
+}
+
 
 //THUNK
 //------------------------------------------------------------------
@@ -70,6 +84,23 @@ export const userProfileThunk = (id) => {
   return (dispatch) => {
     profileAPI.getUsers(id).then(data => {
       dispatch(setUserProfileAC(data))
+    })
+  }
+}
+export const getStatus = (id) => {
+  return (dispatch) => {
+    profileAPI.getStatus(id).then(data => {
+      dispatch(setStatus(data.data))
+    })
+  }
+}
+export const updateStatus = (status) => {
+  return (dispatch) => {
+    profileAPI.updateStatus(status).then(data => {
+      if(data.data.resultCode === 0){
+        dispatch(setStatus(status))
+      }
+      
     })
   }
 }

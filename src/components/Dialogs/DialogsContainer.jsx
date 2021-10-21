@@ -1,6 +1,9 @@
 
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+import { compose } from 'redux'
 import { sendMessageBtnActionCreater, updateTextAreaValueActionCreater } from '../../redux/messagesReducer'
+import { withAuthRedirect } from '../hoc/AuthRedirect'
 import Dialogs from './Dialogs'
 
 
@@ -10,7 +13,6 @@ import Dialogs from './Dialogs'
 let mapStateToProps = (state) => {
   return {
     messagesPage: state.messagesPage,
-    isAuth: state.auth.isAuth
   }
 }
 let mapDispatchToProps = (dispatch) => {
@@ -24,9 +26,10 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
-
-export default DialogsContainer
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),//(**)
+  withAuthRedirect//(*) Этот результат прокидываем в (**)
+)(Dialogs) // берем dialogs и прокидываем в (*)
 
 

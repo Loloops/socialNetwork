@@ -1,6 +1,7 @@
 import Preloader from '../../common/preloader/preloader'
 import classes from './ProfileInfo.module.css'
 import userphoto from '../../../assets/Programmyi-dlya-sozdaniya-avatarok.png'
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
   if(!props.profile){
@@ -10,9 +11,6 @@ const ProfileInfo = (props) => {
 
   return (
     <div>
-      <div className={classes.profileInfoImg}>
-        <img src='https://images.ctfassets.net/hrltx12pl8hq/1XAMCcfZRbFQmNCuFR8oXH/e1bddb571332e355b076109938db0bf3/shutterstock_1308690499.jpg?fit=fill&w=800&h=400' />
-      </div>
       <div className={classes.descriptionBlock}>
 
         <div className={classes.avatar}>
@@ -24,7 +22,8 @@ const ProfileInfo = (props) => {
         </div>
         
         <div className={classes.about}>
-          <p className={classes.aboutDescription}>Description: <span>{props.profile.fullName}</span>  </p>
+          <ProfileStatus status={props.status} {...props}/>
+          <p className={classes.aboutDescription}>Name: <span>{props.profile.fullName}</span>  </p>
           <p className={classes.aboutDescription}>Description: <span>{props.profile.aboutMe}</span>  </p>
           <p className={classes.aboutContacts}>Contacts:</p>
           <ul className={classes.aboutContactsLinks}>
