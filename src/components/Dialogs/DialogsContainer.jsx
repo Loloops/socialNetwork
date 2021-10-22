@@ -17,8 +17,8 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {
   return {
-    MessageBtn: () => {
-      dispatch(sendMessageBtnActionCreater())
+    MessageBtn: (newMessageBody) => {
+      dispatch(sendMessageBtnActionCreater(newMessageBody))
     },
     AreaValue: (text) => {
       dispatch(updateTextAreaValueActionCreater(text))

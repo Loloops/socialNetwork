@@ -12,7 +12,6 @@ let initialState =
     {id: 4, message: 'Fuck you', flag: false},
 
   ],
-  textAreaStateValue: '',
   dialogsData: 
   [
     {id: 1, name: 'Dima'},
@@ -30,18 +29,18 @@ export const messagesReducer = (state = initialState, action) => {
     case ADD_MESSAGE:
       const newMessgae = {
         id: 5,
-        message: state.textAreaStateValue,
+        message: action.newMessageBody,
         flag: true,
       }
       return {
         ...state,
-        textAreaStateValue: '',
+
         messagesData: [...state.messagesData, newMessgae]
       }
     case UPD_MESSAGE:
       return {
         ...state,
-        textAreaStateValue: action.newMessage
+        newMessageBody: action.newMessage
       }
     default:
       return state
@@ -49,9 +48,10 @@ export const messagesReducer = (state = initialState, action) => {
 
 }
 
-export const sendMessageBtnActionCreater = () => {
+export const sendMessageBtnActionCreater = (newMessageBody) => {
   return {
-    type: ADD_MESSAGE
+    type: ADD_MESSAGE,
+    newMessageBody
   }
 }
 export const updateTextAreaValueActionCreater = (text) => { 
