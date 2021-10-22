@@ -1,5 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { Textarea } from '../../common/formControls/FormsContols'
+import { maxLength100, requiredField } from '../../common/validators/validators'
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
@@ -43,14 +45,14 @@ const AddNewPostArea = (props) => {
     <form className={classes.inputsBtns} onSubmit={props.handleSubmit}>
       <div>
         <Field 
-            maxLength='1000' 
+            
             placeholder='What you think?' 
-            rows='10' 
+            rows='7' 
             cols='70' 
             className={classes.textarea} 
-            value={props.newPostText} 
-            component='textarea'
+            component={Textarea}
             name='textAreaValuePost'
+            validate={[requiredField, maxLength100]}
         />
       </div>
       <div>

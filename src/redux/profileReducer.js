@@ -11,7 +11,6 @@ let initialState =
     {id: 1, message: 'Hi, how are you', likescount: 5},
     {id: 2, message: 'Its my first post', likescount: 10},
   ],
-  newPostText: '',
   profile: null,
   status: ''
 }

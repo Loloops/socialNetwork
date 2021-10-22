@@ -1,6 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
+import { Textarea } from '../common/formControls/FormsContols'
+import { maxLength150, requiredField } from '../common/validators/validators'
 import DialogItem from './DialogItem/DialogItem'
 import classes from './Dialogs.module.css'
 import Message from './Message/Message'
@@ -62,9 +64,9 @@ const AddMessageForm = (props) => {
             rows='7' 
             cols='70' 
             className={classes.messageTextArea} 
+            validate={[requiredField, maxLength150]}
             
-            
-            component='textarea'
+            component={Textarea}
             name='textAreaValue'
         >
         </Field>
