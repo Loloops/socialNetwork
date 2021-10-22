@@ -1,8 +1,7 @@
 
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 import { compose } from 'redux'
-import { sendMessageBtnActionCreater, updateTextAreaValueActionCreater } from '../../redux/messagesReducer'
+import { sendMessageBtnActionCreater } from '../../redux/messagesReducer'
 import { withAuthRedirect } from '../hoc/AuthRedirect'
 import Dialogs from './Dialogs'
 
@@ -20,9 +19,7 @@ let mapDispatchToProps = (dispatch) => {
     MessageBtn: (newMessageBody) => {
       dispatch(sendMessageBtnActionCreater(newMessageBody))
     },
-    AreaValue: (text) => {
-      dispatch(updateTextAreaValueActionCreater(text))
-    }
+    
   }
 }
 

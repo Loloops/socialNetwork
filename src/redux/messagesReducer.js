@@ -1,5 +1,4 @@
-const ADD_MESSAGE = 'ADD-MESSAGE',
-      UPD_MESSAGE = 'UPDATE-MESSAGE-TEXTAREA'
+const ADD_MESSAGE = 'ADD-MESSAGE'
 
 
 let initialState = 
@@ -37,11 +36,6 @@ export const messagesReducer = (state = initialState, action) => {
 
         messagesData: [...state.messagesData, newMessgae]
       }
-    case UPD_MESSAGE:
-      return {
-        ...state,
-        newMessageBody: action.newMessage
-      }
     default:
       return state
   }
@@ -54,12 +48,7 @@ export const sendMessageBtnActionCreater = (newMessageBody) => {
     newMessageBody
   }
 }
-export const updateTextAreaValueActionCreater = (text) => { 
-  return {
-    type: UPD_MESSAGE,
-    newMessage: text
-  }
-}
+
 
 
 export default messagesReducer

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Field, reduxForm } from 'redux-form'
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
@@ -9,13 +10,9 @@ const MyPosts = (props) => {
 
   let Posts = props.postsData.map(post => (<Post message={post.message} key={post.id} likeCount = {post.likescount}/>))
 
-  const onAddPost = () => {
-    props.addPost()
-  }
 
-  const onPostChange = (e) => {
-    let text = e.target.value
-    props.updateNewPostText(text)
+  const addNewPost = (values) =>{
+    props.addPost(values.textAreaValuePost)
   }
 
 
@@ -27,31 +24,12 @@ const MyPosts = (props) => {
            My Posts
          </h3>
 
-         <div className={classes.inputsBtns}>
-          <div>
-           <textarea 
-              maxLength='1000' 
-              placeholder='What you think?' 
-              rows='10' 
-              cols='70' 
-              className={classes.textarea} 
-              value={props.newPostText} 
-              onChange={ onPostChange } 
-           />
-          </div>
-          <div>
-           <button className={classes.addPostBtn} onClick={ onAddPost }>Add post</button>
-          </div>
-         </div>
+         <AddPostFormRedux onSubmit={addNewPost}/>
 
-        
          <div className={classes.posts}>
 
-           
            { Posts }
-           
-           
-
+      
          </div>
 
        </div>
@@ -59,4 +37,32 @@ const MyPosts = (props) => {
      </div>
   )
 }
+
+const AddNewPostArea = (props) => {
+  return (
+    <form className={classes.inputsBtns} onSubmit={props.handleSubmit}>
+      <div>
+        <Field 
+            maxLength='1000' 
+            placeholder='What you think?' 
+            rows='10' 
+            cols='70' 
+            className={classes.textarea} 
+            value={props.newPostText} 
+            component='textarea'
+            name='textAreaValuePost'
+        />
+      </div>
+      <div>
+        <button className={classes.addPostBtn} >Add post</button>
+      </div>
+    </form>
+  )
+}
+const AddPostFormRedux = reduxForm({form: 'profilePostValue'})(AddNewPostArea)
+
+
+
+
+
 export default MyPosts
