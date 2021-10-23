@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form"
 import { headerAPI } from "../api/api"
 
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -16,7 +17,6 @@ const AuthReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.data,
-        isAuth: true
       }
       
   
@@ -25,7 +25,7 @@ const AuthReducer = (state = initialState, action) => {
   }
 }
 
-export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}})
+export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USER_DATA, data: {userId, email, login, isAuth}})
 
 
 export const loginThunk = () => {
@@ -35,10 +35,33 @@ export const loginThunk = () => {
     .then(data => {
       if(data.resultCode === 0){
         let {id, login ,email} = data.data
-        dispatch(setAuthUserData(id, email, login))
+        dispatch(setAuthUserData(id, email, login, true))
       }
     })
   }
+}
+
+export const login = (email, password, rememberMe) => (dispatch) => {
+  headerAPI.login(email, password, rememberMe)
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          dispatch(loginThunk())
+        } else {
+          let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Some error'
+          let action = stopSubmit('login', {_error: message})
+          
+          dispatch(action)
+        }
+      })
+}
+
+export const logout = () => (dispatch) => {
+  headerAPI.logout()
+      .then(res => {
+        if (res.data.resultCode === 0) {
+          dispatch(setAuthUserData(null, null, null, false))
+        }
+      })
 }
 
 

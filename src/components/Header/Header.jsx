@@ -8,7 +8,9 @@ const Header = (props) => {
           <img src='https://e7.pngegg.com/pngimages/65/926/png-clipart-inkscape-graphics-editor-graphics-software-corel-draw-logo-silhouette-black-thumbnail.png' />
        </div>
        <div className={classes.loginblock}>
-         {props.isAuth ? props.login :<NavLink to={'/login'}>Login</NavLink>}
+         {props.isAuth 
+         ? <div>{props.login} <button onClick={props.logout}>Logout</button> </div>
+         :<NavLink to={'/login'}>Login</NavLink>}
          
        </div>
      </header>
