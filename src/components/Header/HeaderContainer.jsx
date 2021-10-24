@@ -7,11 +7,7 @@ import {loginThunk, logout, setAuthUserData} from '../../redux/authReducer'
 
 class HeaderContainer extends React.Component{
 
-  componentDidMount(){
-    this.props.loginThunk()
-
-  }
-
+  
 
 
   render () {
@@ -27,4 +23,4 @@ const mapStateTotProps = (state) => ({
   login: state.auth.login
 })
 
-export default connect(mapStateTotProps, {setAuthUserData, loginThunk, logout})(HeaderContainer)
+export default connect(mapStateTotProps, {setAuthUserData, logout})(HeaderContainer)

@@ -31,7 +31,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USE
 export const loginThunk = () => {
   
   return (dispatch) => {
-    headerAPI.getAuth()
+    return headerAPI.getAuth()
     .then(data => {
       if(data.resultCode === 0){
         let {id, login ,email} = data.data
