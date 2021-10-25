@@ -1,5 +1,3 @@
-import { stopSubmit } from "redux-form"
-import { headerAPI } from "../api/api"
 import { loginThunk } from "./authReducer"
 
 const SET_INIT = 'SET_INIT'
