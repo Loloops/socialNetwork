@@ -12,7 +12,6 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import React from 'react';
 import { connect } from 'react-redux';
-import { loginThunk } from './redux/authReducer';
 import { initializeApp } from './redux/appReducer';
 import Preloader from './components/common/preloader/preloader';
 

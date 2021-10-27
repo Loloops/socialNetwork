@@ -3,7 +3,7 @@ import React from 'react'
 import Profile from './Profile'
 import { connect } from 'react-redux'
 import { getStatus, updateStatus, userProfileThunk } from '../../redux/profileReducer'
-import { Redirect, withRouter } from 'react-router'
+import { withRouter } from 'react-router'
 import { withAuthRedirect } from '../hoc/AuthRedirect'
 import { compose } from 'redux'
 
