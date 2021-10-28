@@ -1,6 +1,6 @@
 import { loginThunk } from "./authReducer"
 
-const SET_INIT = 'SET_INIT'
+const SET_INIT = 'app/SET_INIT'
 
 
 let initialState = {
@@ -22,18 +22,12 @@ const AppReducer = (state = initialState, action) => {
 export const setInitializedSucces = () => ({type: SET_INIT})
 
 
-export const initializeApp = () => {
-  
-  return (dispatch) => {
+export const initializeApp = () => (dispatch) =>{
     let promise = dispatch(loginThunk())
-
     Promise.all([promise])
       .then(() => {
           dispatch(setInitializedSucces())
-    })
-
-    
-  }
+    }) 
 }
 
 
