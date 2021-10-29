@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import classes from './Header.module.css'
+import logo from '../../assets/pngegg.png'
 
 const Header = (props) => {
   return (
     <header className={classes.header}>
-        <div className={classes.Logo}>
-          <img src='https://e7.pngegg.com/pngimages/65/926/png-clipart-inkscape-graphics-editor-graphics-software-corel-draw-logo-silhouette-black-thumbnail.png' />
+       <div className={classes.Logo}>
+          <img src={ logo } />
        </div>
        <div className={classes.loginblock}>
          {props.isAuth 

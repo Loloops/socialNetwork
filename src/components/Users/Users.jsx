@@ -1,5 +1,4 @@
-import classes from './Users.module.css'
-import { NavLink } from 'react-router-dom'
+
 import Paginator from './Paginator/Paginator'
 import User from './User/User'
 
