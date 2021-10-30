@@ -5,12 +5,9 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Settings/Setting';
 import FriendsContent from './components/Friends/FriendsContent';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { connect, Provider } from 'react-redux';
 import { initializeApp } from './redux/appReducer';
 import Preloader from './components/common/preloader/preloader';
@@ -19,9 +16,9 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/redux-store';
 
 
-
-
-
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
 
 
 
@@ -50,12 +47,26 @@ class App extends React.Component{
         <Sidebar/>
   
         <div className='app-wrapper-content'>
-           <Route path='/profile/:userId?' render={ () => <ProfileContainer/> } />
-           <Route path='/dialogs' render={ () => <DialogsContainer /> } />
+           <Route path='/profile/:userId?' render={ () => {
+             return <Suspense fallback={<Preloader />}>
+                      <ProfileContainer/>
+                    </Suspense>
+           }  } />
+           
+           <Route path='/dialogs' render={ () => {
+            return <Suspense fallback={<Preloader />}>
+                    <DialogsContainer />
+                   </Suspense>
+
+           }  } />
            <Route path='/news' render={ News } />
            <Route path='/music' render={ Music } />
            <Route path='/settings' render={ Setting } />
-           <Route path='/users' render={ () => <UsersContainer /> } />
+           <Route path='/users' render={ () => {
+             return <Suspense fallback={<Preloader />}>
+                      <UsersContainer />
+                    </Suspense>
+           }  } />
            <Route path='/friends' render={ FriendsContent } />
            <Route path='/login' render={ () => <Login /> } />
        </div>
