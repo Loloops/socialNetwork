@@ -8,6 +8,11 @@ const ProfileInfo = (props) => {
   if(!props.profile){
     return <Preloader />
   }
+const mainPhotoSelected = (e) => {
+  if(e.target.files.length) {
+    props.savePhoto(e.target.files[0])
+  }
+}
 
 
   return (
@@ -20,6 +25,7 @@ const ProfileInfo = (props) => {
             ? props.profile.photos.large 
             : userphoto} 
             alt="ava" />
+            
         </div>
         
         <div className={classes.about}>
@@ -31,7 +37,11 @@ const ProfileInfo = (props) => {
             <li> <a href={`https://${props.profile.contacts.vk}`} target='_blank' rel='noreferrer'>{props.profile.contacts.vk}</a>  </li>
             <li> <a href={`https://${props.profile.contacts.instagram}`} >{props.profile.contacts.instagram}</a>  </li>
             <li> <a href={`https://${props.profile.contacts.github}`}>{props.profile.contacts.github}</a>  </li>
+            
           </ul>
+          {
+            props.isOwner && <input type={'file'} onChange={ mainPhotoSelected } />
+          }
         </div>
         
 
