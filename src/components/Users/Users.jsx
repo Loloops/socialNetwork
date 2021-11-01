@@ -11,6 +11,7 @@ const Users = (props) => {
     <div>
       {
         props.users.map(u => <User 
+          key={u.id}
           u={u} 
           followingInProgress={props.followingInProgress}
           unfollowThunk={props.unfollowThunk}

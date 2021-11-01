@@ -20,3 +20,16 @@ const Component = Component => ({input, meta, ...props}) => {
 
 export const Input = Component('input')
 export const Textarea = Component('textarea')
+
+
+// export const createField = (placeholder, name, validators, component, props = {}, text = '') => {
+//   <div>
+//     <Field 
+//       placeholder={placeholder}
+//       name={name}
+//       validate={validators}
+//       component={component}
+//       {...props}
+//     /> {text}
+//   </div>
+// }

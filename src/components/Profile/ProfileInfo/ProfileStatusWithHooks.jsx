@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Preloader from '../../common/preloader/preloader'
 import classes from './ProfileInfo.module.css'
 
 

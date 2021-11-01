@@ -5,7 +5,7 @@ import userPhoto from '../../../assets/Programmyi-dlya-sozdaniya-avatarok.png'
 
 const User = (props) => {
   return (
-    <div key={props.u.id}  className={classes.UsersWrapper}>
+    <div   className={classes.UsersWrapper}>
           <div className={`${classes.userItem} ${classes.wrapperImg}`}>
             <div>
               <NavLink to={'/profile/' + props.u.id}> 

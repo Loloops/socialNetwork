@@ -10,8 +10,6 @@ import Post from './Post/Post'
 
 const MyPosts = React.memo(props => {
 
-  console.log('RENDER');
-
   let Posts = [...props.postsData].reverse().map(post => (<Post message={post.message} key={post.id} likeCount = {post.likescount}/>))
 
 

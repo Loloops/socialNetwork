@@ -89,4 +89,9 @@
   padding-top: 12px;
   padding-bottom: 12px;
 }
+.error{
+  color: red;
+  font-weight: 500;
+  
+}
 

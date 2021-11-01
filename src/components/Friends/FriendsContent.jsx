@@ -1,4 +1,3 @@
-import classes from './Friends.module.css'
 
 
 const FriendsContent = () => {
