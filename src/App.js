@@ -1,6 +1,6 @@
 import './App.css';
 import Sidebar from './components/Navbar/Sidebar';
-import { Route, withRouter } from 'react-router';
+import { Redirect, Route, Switch, withRouter } from 'react-router';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Settings/Setting';
@@ -28,8 +28,8 @@ class App extends React.Component{
 
   componentDidMount(){
     this.props.initializeApp()
-
   }
+
 
 
   render(){
@@ -47,28 +47,34 @@ class App extends React.Component{
         <Sidebar/>
   
         <div className='app-wrapper-content'>
-           <Route path='/profile/:userId?' render={ () => {
-             return <Suspense fallback={<Preloader />}>
-                      <ProfileContainer/>
+           <Switch>
+            <Redirect exact from='/' to='/profile' />
+            
+            <Route path='/profile/:userId?' render={ () => {
+              return <Suspense fallback={<Preloader />}>
+                        <ProfileContainer/>
+                      </Suspense>
+            }  } />
+            
+            <Route path='/dialogs' render={ () => {
+              return <Suspense fallback={<Preloader />}>
+                      <DialogsContainer />
                     </Suspense>
-           }  } />
-           
-           <Route path='/dialogs' render={ () => {
-            return <Suspense fallback={<Preloader />}>
-                    <DialogsContainer />
-                   </Suspense>
 
-           }  } />
-           <Route path='/news' render={ News } />
-           <Route path='/music' render={ Music } />
-           <Route path='/settings' render={ Setting } />
-           <Route path='/users' render={ () => {
-             return <Suspense fallback={<Preloader />}>
-                      <UsersContainer />
-                    </Suspense>
-           }  } />
-           <Route path='/friends' render={ FriendsContent } />
-           <Route path='/login' render={ () => <Login /> } />
+            }  } />
+            <Route path='/news' render={ News } />
+            <Route path='/music' render={ Music } />
+            <Route path='/settings' render={ Setting } />
+            <Route path='/users' render={ () => {
+              return <Suspense fallback={<Preloader />}>
+                        <UsersContainer />
+                      </Suspense>
+            }  } />
+            <Route path='/friends' render={ FriendsContent } />
+            <Route path='/login' render={ () => <Login /> } />
+
+            <Route path='*' render={() => <div> 404 NOT FOUND </div>} />
+           </Switch>
        </div>
   
   
