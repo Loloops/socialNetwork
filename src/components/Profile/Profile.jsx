@@ -1,17 +1,55 @@
-import MyPostsContainer from './MyPosts/MyPostsContainer'
-import ProfileInfo from './ProfileInfo/ProfileInfo'
+import { useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Redirect, useParams } from 'react-router';
+import { getStatus, userProfileThunk } from '../../redux/profileReducer';
+import MyPostsContainer from './MyPosts/MyPostsContainer';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
+function usePrevious(value) {
+  //custom hook for prev value
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
 
+const Profile = () => {
+  let { userId } = useParams();
 
-const Profile = (props) => {
+  const dispatch = useDispatch();
+  const authUser = useSelector(({ auth }) => auth.userId);
+  const authRedirect = useSelector(({ auth }) => auth.isAuth);
+
+  const refreshProfile = () => {
+    if (!userId) {
+      userId = authUser;
+    }
+    dispatch(userProfileThunk(userId));
+    dispatch(getStatus(userId));
+  };
+
+  let prevId = usePrevious(userId);
+
+  useEffect(() => {
+    refreshProfile();
+    if (userId !== prevId) {
+      refreshProfile();
+    }
+  });
 
   return (
     <div>
+      {!authRedirect ? (
+        <Redirect to={'/login'} />
+      ) : (
+        <>
+          <ProfileInfo isOwner={!userId} />
+          <MyPostsContainer />
+        </>
+      )}
+    </div>
+  );
+};
 
-      <ProfileInfo savePhoto={props.savePhoto} profile={props.profile} {...props} isOwner={props.isOwner} saveProfile={props.saveProfile}/>
-      <MyPostsContainer/>
-       
-     </div>
-  )
-}
-export default Profile
+export default Profile;

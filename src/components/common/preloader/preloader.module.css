@@ -1,0 +1,11 @@
+.preloader {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.preloaderBlock {
+  margin: 0 25% 0 25%;
+}
+.preloaderImg {
+  margin-left: 25%;
+}
