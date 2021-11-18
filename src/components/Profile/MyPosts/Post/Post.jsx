@@ -1,22 +1,27 @@
-import classes from './Post.module.css'
+import { useSelector } from 'react-redux';
+import classes from './Post.module.css';
+import userphoto from '../../../../assets/Programmyi-dlya-sozdaniya-avatarok.png';
+import Preloader from '../../../common/preloader/preloader';
 
-const Post = (props) => {
+const Post = ({ message, likeCount }) => {
+  const { profile } = useSelector(({ profilePage }) => profilePage);
+  if (!profile) {
+    return <Preloader />;
+  }
   return (
-
     <div className={classes.item}>
       <div className={classes.itemImg}>
-        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgolBdeaXdt7hZ4G28YiA8shOCg4jkBg08uA&usqp=CAU' alt='Avatar...'/>
-        <p className={classes.itemMessage}> {props.message} </p>
+        <img
+          src={profile.photos.large !== null ? profile.photos.large : userphoto}
+          alt="Avatar..."
+        />
+        <p className={classes.itemMessage}> {message} </p>
       </div>
-      
 
       <div className={classes.likeCount}>
-        <span> Like</span> {props.likeCount}
+        <span> Like</span> {likeCount}
       </div>
-
     </div>
-
-           
-  )
-}
-export default Post
+  );
+};
+export default Post;

@@ -13,7 +13,7 @@ import Header from './components/Header/Header';
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const Profile = React.lazy(() => import('./components/Profile/Profile'));
-const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const Users = React.lazy(() => import('./components/Users/Users'));
 
 const App = () => {
   const initialized = useSelector(({ app }) => app.initialized);
@@ -61,7 +61,7 @@ const App = () => {
             render={() => {
               return (
                 <Suspense fallback={<Preloader />}>
-                  <UsersContainer />
+                  <Users />
                 </Suspense>
               );
             }}

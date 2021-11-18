@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router';
 import { getStatus, userProfileThunk } from '../../redux/profileReducer';
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 function usePrevious(value) {
@@ -36,7 +36,7 @@ const Profile = () => {
     if (userId !== prevId) {
       refreshProfile();
     }
-  });
+  }, [userId]);
 
   return (
     <div>
@@ -45,7 +45,7 @@ const Profile = () => {
       ) : (
         <>
           <ProfileInfo isOwner={!userId} />
-          <MyPostsContainer />
+          <MyPosts />
         </>
       )}
     </div>

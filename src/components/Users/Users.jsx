@@ -1,31 +1,50 @@
+import { useSelector } from 'react-redux';
+import Preloader from '../common/preloader/preloader';
+import Paginator from './Paginator/Paginator';
+import User from './User/User';
+import { getUsersThunkCreator } from '../../redux/usersReducer';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { followThunk, unfollowThunk } from '../../redux/usersReducer';
 
-import Paginator from './Paginator/Paginator'
-import User from './User/User'
+const Users = () => {
+  const { users, pageSize, totalUsersCount, currentPage, isFetching, followingInProgress } =
+    useSelector(({ usersPage }) => usersPage);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getUsersThunkCreator(currentPage, pageSize));
+  }, []);
 
-
-const Users = (props) => {
-
+  const onPageChanged = (p) => {
+    dispatch(getUsersThunkCreator(p, pageSize));
+  };
 
   return (
     <div>
-      {
-        props.users.map(u => <User 
-          key={u.id}
-          u={u} 
-          followingInProgress={props.followingInProgress}
-          unfollowThunk={props.unfollowThunk}
-          followThunk={props.followThunk}
-        />)
-      }
+      {isFetching ? (
+        <Preloader />
+      ) : (
+        <>
+          {users.map((u) => (
+            <User
+              key={u.id}
+              u={u}
+              followingInProgress={followingInProgress}
+              unfollowThunk={unfollowThunk}
+              followThunk={followThunk}
+            />
+          ))}
 
-      <Paginator 
-        currentPage={props.currentPage} 
-        onPageChanged={props.onPageChanged}
-        totalUsersCount={props.totalUsersCount}
-        pageSize={props.pageSize}
-      />
+          <Paginator
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}
+            totalUsersCount={totalUsersCount}
+            pageSize={pageSize}
+          />
+        </>
+      )}
     </div>
-  )
-}
-export default Users
+  );
+};
+export default Users;
