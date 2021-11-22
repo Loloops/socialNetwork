@@ -55,7 +55,6 @@ const App = () => {
               );
             }}
           />
-          <Route path="/settings" render={Setting} />
           <Route
             path="/users"
             render={() => {

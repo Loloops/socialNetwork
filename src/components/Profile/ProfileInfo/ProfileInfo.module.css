@@ -1,18 +1,19 @@
-
-.profileInfoImg img{
-  
+.profileInfoImg img {
   width: 100%;
   height: auto;
   border-radius: 10px;
 }
-.descriptionBlock{
+.descriptionBlock {
   display: flex;
   justify-content: flex-start;
   margin: 1em;
+  flex-wrap: wrap;
 }
-.avatar{
-  margin-right: 5em;
-  
+.avatar {
+  width: 40%;
+}
+.about {
+  width: 50%;
 }
 .avatar img {
   border-radius: 5%;
@@ -21,7 +22,7 @@
   max-width: 100%;
   height: auto;
 }
-.aboutDescription{
+.aboutDescription {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 20px;
@@ -33,21 +34,21 @@
   letter-spacing: 0;
   text-transform: uppercase;
   text-decoration: underline;
-  
+  word-break: break-all;
 }
-.aboutContacts{
+.aboutContacts {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 20px;
   letter-spacing: 3px;
 }
-.aboutContactsLinks{
+.aboutContactsLinks {
   margin-top: 0.5em;
-  margin-left: 2em;
 }
-.aboutContactsLinks li{
+.aboutContactsLinks li {
   list-style: disc;
   margin-bottom: 0.4em;
+  word-break: break-all;
 }
 .aboutContactsLinks li a {
   color: black;
@@ -55,28 +56,28 @@
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 3px;
-  transition: all .2s ease;
-
+  transition: all 0.2s ease;
 }
-.aboutContactsLinks li a:hover{
+.aboutContactsLinks li a:hover {
   color: white;
   text-decoration: underline;
 }
 
-.status{
+.status {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 20px;
   letter-spacing: 3px;
   margin-bottom: 1em;
 }
-.status span{
+.status span {
   font-weight: 500;
   letter-spacing: 0;
   text-transform: uppercase;
   text-decoration: underline;
+  word-break: break-all;
 }
-.input{
+.input {
   width: 100%;
   margin: 8px 0;
   display: inline-block;
@@ -89,9 +90,31 @@
   padding-top: 12px;
   padding-bottom: 12px;
 }
-.error{
+.error {
   color: red;
   font-weight: 500;
-  
 }
 
+@media (max-width: 1000px) {
+  .avatar {
+    width: 100%;
+  }
+  .about {
+    margin-top: 1em;
+    width: 100%;
+  }
+}
+@media (max-width: 750px) {
+  .status {
+    font-size: 13px;
+  }
+  .aboutDescription {
+    font-size: 13px;
+  }
+  .aboutContacts {
+    font-size: 13px;
+  }
+  .aboutContactsLinks li {
+    font-size: 13px;
+  }
+}

@@ -1,39 +1,40 @@
-.dialogs{
+.dialogs {
   display: grid;
   grid-template-columns: 2fr 10fr;
 }
-.dialogsItems{
+.dialogsItems {
   padding: 10px;
 }
 
-.messages{
+.messages {
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   max-height: 400px;
   overflow-y: scroll;
 }
-.messageSendItem{
+.messageSendItem {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   margin-top: 1em;
 }
-.messageTextArea{
+.messageTextArea {
   outline: none;
   resize: none;
   border: none;
   padding: 0.5em;
   border-radius: 10px;
+  width: 100%;
 }
-.messageTextArea::placeholder{
+.messageTextArea::placeholder {
   opacity: 0.5;
 }
-.messageTextArea:focus::placeholder{
+.messageTextArea:focus::placeholder {
   opacity: 0;
 }
 
-.messageSendButton{
+.messageSendButton {
   border: none;
   color: black;
   text-transform: uppercase;
@@ -44,9 +45,9 @@
   cursor: pointer;
   background-color: #fff;
   font-weight: 600;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
-.messageSendButton:hover{
+.messageSendButton:hover {
   background-color: rgb(49, 56, 255);
   color: #fff;
 }

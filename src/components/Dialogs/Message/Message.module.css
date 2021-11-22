@@ -1,9 +1,9 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-.messageItem{
+.messageItem {
   background: rgb(100, 255, 227);
   margin-top: 1.5em;
   margin-left: 3em;
@@ -11,22 +11,23 @@
   padding: 0.5em;
   width: 40%;
   position: relative;
-  
+  word-break: break-all;
 }
-.message{
+.message {
   padding-left: 1em;
   font-weight: 600;
 }
-.messageItem[data-itsme="false"]{
+.messageItem[data-itsme='false'] {
   margin-left: 50%;
   background-color: rgb(196, 196, 196);
 }
-.messageItem img{
+.messageItem img {
   width: 25px;
   height: 25px;
   border-radius: 20px;
   position: absolute;
-  left: -10%;
+  left: 0;
   top: 0;
   bottom: 0;
+  transform: translate(-130%, -10%);
 }

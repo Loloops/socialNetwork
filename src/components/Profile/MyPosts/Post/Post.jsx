@@ -15,8 +15,8 @@ const Post = ({ message, likeCount }) => {
           src={profile.photos.large !== null ? profile.photos.large : userphoto}
           alt="Avatar..."
         />
-        <p className={classes.itemMessage}> {message} </p>
       </div>
+      <p className={classes.itemMessage}> {message} </p>
 
       <div className={classes.likeCount}>
         <span> Like</span> {likeCount}
