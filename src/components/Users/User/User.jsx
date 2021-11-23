@@ -44,16 +44,7 @@ const User = ({ u, followingInProgress, followThunk, unfollowThunk }) => {
             Name: <span>{u.name}</span>
           </h3>
           <p className={classes.userItemPersonsStatus}>
-            Status: <span className={classes.dsad}>{u.status}</span>
-          </p>
-        </div>
-
-        <div className={classes.userItemLievs}>
-          <h3 className={classes.userItemLievsCountry}>
-            Country: <span>{'NULL'}</span>
-          </h3>
-          <p className={classes.userItemLievsCity}>
-            City: <span>{'NULL'}</span>
+            Status: <span className={classes.status}>{u.status || '< without status >'}</span>
           </p>
         </div>
       </div>

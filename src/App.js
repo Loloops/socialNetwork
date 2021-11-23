@@ -1,7 +1,6 @@
 import './App.css';
 import Sidebar from './components/Navbar/Sidebar';
 import { Redirect, Route, Switch } from 'react-router';
-import Setting from './components/Settings/Setting';
 import Login from './components/Login/Login';
 import React, { Suspense, useEffect } from 'react';
 import { Provider, useDispatch, useSelector } from 'react-redux';
@@ -11,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/redux-store';
 import Header from './components/Header/Header';
 
-const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'));
 const Profile = React.lazy(() => import('./components/Profile/Profile'));
 const Users = React.lazy(() => import('./components/Users/Users'));
 
@@ -50,7 +49,7 @@ const App = () => {
             render={() => {
               return (
                 <Suspense fallback={<Preloader />}>
-                  <DialogsContainer />
+                  <Dialogs />
                 </Suspense>
               );
             }}

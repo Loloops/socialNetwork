@@ -31,3 +31,11 @@
   bottom: 0;
   transform: translate(-130%, -10%);
 }
+@media (max-width: 600px) {
+  .messageItem {
+    width: 50%;
+  }
+  .message {
+    font-size: 13px;
+  }
+}

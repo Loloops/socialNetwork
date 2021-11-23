@@ -1,20 +1,20 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.UsersWrapper{
+.UsersWrapper {
   display: flex;
   margin: 2em 0 2em 0;
   justify-content: center;
 }
-.userItemPhoto{
+.userItemPhoto {
   width: 70px;
   height: 70px;
   border-radius: 50px;
 }
-.userItemBtn{
+.userItemBtn {
   background: none;
   border: 3px solid rgb(66, 28, 255);
   text-transform: uppercase;
@@ -23,55 +23,53 @@
   width: 130px;
   border-radius: 10px;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
-.userItemBtn:hover{
+.userItemBtn:hover {
   background-color: #fff;
   color: rgb(66, 28, 255);
   border: 3px solid white;
 }
-.userItemBtnUnf{
+.userItemBtnUnf {
   background-color: #fff;
   color: rgb(66, 28, 255);
   border: 3px solid white;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
-.userItemBtnUnf:hover{
+.userItemBtnUnf:hover {
   border: 3px solid rgb(66, 28, 255);
 }
-.userItem{
+.userItem {
   margin-right: 2em;
 }
-.wrapperImg{
+.wrapperImg {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.wrapperInfo{
-  width: 60%;
-  border: 4px rgb(160, 57, 251) solid;
+.wrapperInfo {
+  width: 40%;
   border-radius: 10px;
-  padding: 1em;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  border-left: 3px solid rgb(195, 135, 239);
 }
-.userItemPersons{
-  border-left: 4px solid rgba(0, 0, 255, 0.4);
+.userItemPersons {
   border-radius: 3px;
   padding-left: 1em;
 }
 
-.userItemPersonsName{
- text-transform: uppercase;
- font-weight: 700;
+.userItemPersonsName {
+  text-transform: uppercase;
+  font-weight: 700;
 }
-.userItemPersonsName span{
+.userItemPersonsName span {
   letter-spacing: 3px;
   color: rgb(34, 0, 255);
   font-size: 15px;
- }
+}
 
-.userItemPersonsStatus{
+.userItemPersonsStatus {
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -81,24 +79,24 @@
   font-size: 15px;
 }
 
-.userItemLievs{
+.userItemLievs {
   border-left: 4px solid rgba(0, 0, 255, 0.4);
   border-radius: 3px;
   padding-left: 1em;
 }
 
-.userItemLievsCountry{
+.userItemLievsCountry {
   text-transform: uppercase;
   font-weight: 700;
 }
-.userItemLievsCountry span{
+.userItemLievsCountry span {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: rgb(34, 0, 255);
   font-size: 20px;
 }
-.userItemLievsCity{
+.userItemLievsCity {
   text-transform: uppercase;
   font-weight: 700;
 }
@@ -108,13 +106,53 @@
   font-size: 15px;
 }
 
-
-.selectedpadge{
-
-  text-decoration: underline;  
+.prev {
+  padding: 3px;
+  border-radius: 3px;
+  background-color: rgba(34, 0, 255, 0.3);
+  border: 0;
+  margin-right: 5px;
+  font-size: 13px;
+  margin-top: 5px;
+  font-weight: 500;
 }
-.page{
+.next {
+  padding: 3px;
+  border-radius: 3px;
+  background-color: rgba(34, 0, 255, 0.3);
+  border: 0;
+  margin-right: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.next:hover {
+  background-color: rgba(195, 135, 239, 1);
+}
+.prev:hover {
+  background-color: rgba(195, 135, 239, 1);
+}
+.page:hover {
+  background-color: rgba(195, 135, 239, 1);
+}
+.page.selectedpadge {
+  background-color: rgba(195, 135, 239, 1);
+}
+.page {
   display: inline;
   cursor: pointer;
-  width: 15px;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: rgba(34, 0, 255, 0.3);
+  border: 0;
+  margin-right: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.paginatorWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 3em;
 }
